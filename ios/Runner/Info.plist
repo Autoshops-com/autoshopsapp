@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+<string>OBD2 Reader needs Bluetooth access to connect to your car's diagnostics system.</string>
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>OBD2 Reader uses Bluetooth to retrieve vehicle data.</string>
+
 </dict>
 </plist>

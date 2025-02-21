@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(DevicePreview(builder: (context) => MyApp()));
@@ -19,7 +22,28 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  String dtcCode = "No Errors";
+
+  Future<void> fetchDTC() async {
+    // Simulating fetching DTC data
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      dtcCode = "P0420 - Catalyst System Efficiency Below Threshold";
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDTC();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +51,11 @@ class DashboardScreen extends StatelessWidget {
         title: Text('Vehicle Dashboard'),
       ),
       body: SingleChildScrollView(
-        // Wrap in SingleChildScrollView
         child: Column(
           children: [
             SizedBox(height: 20),
             Container(
-              height: 250, // Set a fixed height to avoid overflow issues
+              height: 250,
               child: SfRadialGauge(
                 axes: <RadialAxis>[
                   RadialAxis(
@@ -47,7 +70,7 @@ class DashboardScreen extends StatelessWidget {
                           startValue: 150, endValue: 220, color: Colors.red),
                     ],
                     pointers: <GaugePointer>[
-                      NeedlePointer(value: 80), // Example speed
+                      NeedlePointer(value: 80),
                     ],
                     annotations: <GaugeAnnotation>[
                       GaugeAnnotation(
@@ -71,6 +94,27 @@ class DashboardScreen extends StatelessWidget {
                 VehicleStatCard(title: "Coolant Temp", value: "90°C"),
                 VehicleStatCard(title: "Fuel Efficiency", value: "12 km/L"),
               ],
+            ),
+            SizedBox(height: 20),
+            Card(
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Text("Diagnostic Trouble Code (DTC)",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text(dtcCode, style: TextStyle(fontSize: 18, color: Colors.red)),
+                    SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: fetchDTC,
+                      child: Text("Refresh DTC"),
+                    ),
+                  ],
+                ),
+              ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
