@@ -92,7 +92,7 @@ class _CarScreenState extends State<CarScreen> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: Image.asset(
-                          'assets/car.png', // Replace with your image
+                          'assets/images/car.png', // Replace with your image
                           height: 90,
                           width: 160,
                           fit: BoxFit.cover,

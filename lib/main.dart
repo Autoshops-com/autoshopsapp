@@ -6,12 +6,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'login_screen.dart';
-import 'home_screen.dart';
 import 'service_screen.dart';
 import 'map_screen.dart';
 import 'profile_screen.dart';
 import 'car_screen.dart';
-import 'custom_bottom_nav.dart';
 
 void main() {
   runApp(DevicePreview(
@@ -24,14 +22,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      useInheritedMediaQuery: true,
       debugShowCheckedModeBanner: false,
       title: 'AutoShops App',
-      theme: ThemeData(primarySwatch: Colors.red),
+      theme: ThemeData(primarySwatch: Colors.red,
+      ),
       initialRoute: '/login',
       routes: {
         '/login': (context) => LoginScreen(),
-        '/home': (context) => HomeScreen(),
         '/car': (context) => CarScreen(),
         '/service': (context) => ServiceScreen(),
         '/map': (context) => MapScreen(),
