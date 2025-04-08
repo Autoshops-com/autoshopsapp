@@ -11,8 +11,10 @@ class CustomBottomNav extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: currentIndex,
       onTap: onTap,
-      selectedItemColor: Colors.redAccent,
-      unselectedItemColor: Colors.grey,
+      backgroundColor: Colors.red,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.black,
+      type: BottomNavigationBarType.fixed,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.directions_car), label: 'Car'),
         BottomNavigationBarItem(icon: Icon(Icons.build), label: 'Service'),

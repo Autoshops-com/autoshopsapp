@@ -25,7 +25,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AutoShops App',
       theme: ThemeData(primarySwatch: Colors.red,
-      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.red,
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+        
+      )),
       initialRoute: '/login',
       routes: {
         '/login': (context) => LoginScreen(),
